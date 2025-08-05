@@ -18,8 +18,10 @@ const Posts = () => {
 
   const updatePostMutation = useMutation({
     mutationFn: async (newPost) => {
+      console.log({ title: newPost.title, body: newPost.body });
+
       const response = await fetch(
-        `https://jsonplaceholder.typicode.com/posts/${original.id}`,
+        `https://jsonplaceholder.typicode.com/posts/${newPost.id}`,
         {
           method: "PUT",
           headers: {
@@ -56,8 +58,8 @@ const Posts = () => {
     updatePostMutation.mutate({
       id: post.id,
       userId: post.userId,
-      title: "test123",
-      body: "test 11234552",
+      title: "title을 수정했습니다.",
+      body: "body를 수정했습니다.",
     });
   };
 
