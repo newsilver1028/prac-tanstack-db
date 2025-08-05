@@ -22,8 +22,6 @@ export const postCollection = createCollection(
     schema: postSchema,
     onUpdate: async ({ transaction }) => {
       const { original, modified } = transaction.mutations[0];
-      console.log({ original, modified });
-
       const response = await fetch(
         `https://jsonplaceholder.typicode.com/posts/${original.id}`,
         {
@@ -39,5 +37,26 @@ export const postCollection = createCollection(
       }
       return await response.json();
     },
+  })
+);
+
+const photoSchema = z.object({
+  albumId: z.number(),
+  id: z.number(),
+  title: z.string(),
+  url: z.string(),
+  thumbnailUrl: z.string(),
+});
+
+export const photoCollection = createCollection(
+  queryCollectionOptions({
+    queryKey: ["photos"],
+    queryFn: async () =>
+      fetch("https://jsonplaceholder.typicode.com/photos").then((res) =>
+        res.json()
+      ),
+    queryClient: new QueryClient(),
+    getKey: (item) => item.id,
+    schema: photoSchema,
   })
 );

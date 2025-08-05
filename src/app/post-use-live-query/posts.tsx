@@ -25,13 +25,11 @@ const Posts = () => {
   };
 
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        {posts.map((post) => (
-          <Item key={post.id} {...post} onClickUpdate={onClickUpdate} />
-        ))}
-      </main>
-    </div>
+    <main className={styles.main}>
+      {posts.map((post) => (
+        <Item key={post.id} {...post} onClickUpdate={onClickUpdate} />
+      ))}
+    </main>
   );
 };
 
