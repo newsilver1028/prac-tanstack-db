@@ -53,8 +53,6 @@ const Posts = () => {
   });
 
   const onClickUpdate = (post: Post) => {
-    console.log({ post });
-
     updatePostMutation.mutate({
       id: post.id,
       userId: post.userId,

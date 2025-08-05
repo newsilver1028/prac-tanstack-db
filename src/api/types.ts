@@ -5,10 +5,10 @@ export interface Post {
   body: string;
 }
 
-export interface Photo {
+export interface Comment {
+  postId: number;
   id: number;
-  albumId: number;
-  title: string;
-  url: string;
-  thumbnailUrl: string;
+  name: string;
+  email: string;
+  body: string;
 }

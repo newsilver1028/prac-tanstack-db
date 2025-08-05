@@ -14,13 +14,16 @@ const Posts = () => {
   const onClickUpdate = (post: Post) => {
     const isExist = postCollection.get(post.id);
     if (isExist) {
-      postCollection.update(post.id, (draft) => {
-        draft.completed = true;
-        draft.id = post.id;
-        draft.userId = post.userId;
-        draft.title = "test123";
-        draft.body = "test1234";
-      });
+      postCollection.update(
+        post.id,
+        // { optimistic: false }, // default: false
+        (draft: Post) => {
+          draft.id = post.id;
+          draft.userId = post.userId;
+          draft.title = "title을 수정해보았습니다.";
+          draft.body = "body를 수정해보았습니다.";
+        }
+      );
     }
   };
 

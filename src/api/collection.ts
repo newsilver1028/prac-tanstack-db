@@ -40,23 +40,23 @@ export const postCollection = createCollection(
   })
 );
 
-const photoSchema = z.object({
-  albumId: z.number(),
+const commentSchema = z.object({
+  postId: z.number(),
   id: z.number(),
-  title: z.string(),
-  url: z.string(),
-  thumbnailUrl: z.string(),
+  name: z.string(),
+  email: z.string(),
+  body: z.string(),
 });
 
-export const photoCollection = createCollection(
+export const commentCollection = createCollection(
   queryCollectionOptions({
     queryKey: ["photos"],
     queryFn: async () =>
-      fetch("https://jsonplaceholder.typicode.com/photos").then((res) =>
+      fetch("https://jsonplaceholder.typicode.com/comments").then((res) =>
         res.json()
       ),
     queryClient: new QueryClient(),
     getKey: (item) => item.id,
-    schema: photoSchema,
+    schema: commentSchema,
   })
 );
