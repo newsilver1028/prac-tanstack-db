@@ -39,24 +39,3 @@ export const postCollection = createCollection(
     },
   })
 );
-
-const commentSchema = z.object({
-  postId: z.number(),
-  id: z.number(),
-  name: z.string(),
-  email: z.string(),
-  body: z.string(),
-});
-
-export const commentCollection = createCollection(
-  queryCollectionOptions({
-    queryKey: ["photos"],
-    queryFn: async () =>
-      fetch("https://jsonplaceholder.typicode.com/comments").then((res) =>
-        res.json()
-      ),
-    queryClient: new QueryClient(),
-    getKey: (item) => item.id,
-    schema: commentSchema,
-  })
-);
